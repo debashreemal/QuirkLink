@@ -7,33 +7,46 @@ const Shorten = () => {
     const [generated, setGenerated] = useState("")
 
    
-    const generate = () => {
-      const myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+    const generate = async () => {
+      if (!url.trim() || !shorturl.trim()) {
+        alert('Please enter both URL and short text.')
+        return
+      }
 
-const raw = JSON.stringify({
-  "url": url,
-  "shorturl": shorturl
-});
+      const myHeaders = new Headers()
+      myHeaders.append('Content-Type', 'application/json')
 
-const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow"
-};
+      const raw = JSON.stringify({
+        url,
+        shorturl
+      })
 
-fetch("api/generate", requestOptions)
-  .then((response) => response.json())
-  .then((result) => {
-    setGenerated(`${process.env.NEXT_PUBLIC_HOST}/${shorturl}`)
-    seturl("")
-    setShortUrl("")
-    console.log(result)
-    alert(result.message)
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      }
 
-  })
-  .catch((error) => console.error(error));
+      try {
+        const response = await fetch('/api/generate', requestOptions)
+        const result = await response.json()
+
+        if (!response.ok) {
+          alert(result.message || 'Failed to generate short URL')
+          return
+        }
+
+        const baseUrl = process.env.NEXT_PUBLIC_HOST || window.location.origin
+        setGenerated(`${baseUrl}/${shorturl}`)
+        seturl('')
+        setShortUrl('')
+        console.log(result)
+        alert(result.message)
+      } catch (error) {
+        console.error(error)
+        alert('Something went wrong while generating your short URL.')
+      }
     }
 
 
