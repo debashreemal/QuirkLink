@@ -12,10 +12,10 @@ export default function Home() {
         
          <div className='flex gap-4 justify-start'>
 
-        <Link href="/shorten"><button className='bg-pink-500 shadow-lg rounded-full p-3 py-1.5 text-white'>Try Now</button></Link>
+        <Link href="/shorten"><button className='bg-pink-500 hover:bg-pink-300 shadow-lg rounded-full p-3 py-1.5 text-white'>Try Now</button></Link>
 
         <Link href="/github">      
-          <button className='bg-pink-500 shadow-lg rounded-full p-3 py-1.5 text-white'>Github</button>
+          <button className='bg-pink-500 hover:bg-pink-300 shadow-lg rounded-full p-3 py-1.5 text-white'>Github</button>
         </Link>
         
         </div>
