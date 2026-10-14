@@ -1,9 +1,7 @@
 # QuirkLink
  
-QuirkLink is a fast, minimal URL shortener — built from scratch to deployment in JavaScript, to understand how full-stack development actually works under the hood, using Next.js and MongoDB.
- 
-It combines server-side API routes, a NoSQL database, and serverless deployment into one clean flow — no separate backend server required.
- 
+QuirkLink is a fast, minimal URL shortener - built from scratch to deployment in JavaScript, to understand how full-stack development actually works under the hood, using Next.js and MongoDB.
+
 ## Tech Stack
  
 - **Frontend:** Next.js, React
